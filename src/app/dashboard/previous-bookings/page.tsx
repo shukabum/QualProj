@@ -40,7 +40,6 @@ export default function PreviousBookingsPage() {
     const room = getRoomDetails(booking.roomId);
     const matchesSearch =
       room?.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      room?.building.toLowerCase().includes(searchTerm.toLowerCase()) ||
       booking.purpose.toLowerCase().includes(searchTerm.toLowerCase());
     return matchesFilter && matchesSearch;
   });
@@ -73,7 +72,7 @@ export default function PreviousBookingsPage() {
           <div className="flex-1 md:max-w-md">
             <input
               type="text"
-              placeholder="Search by room, building, or purpose..."
+              placeholder="Search by room or purpose..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
@@ -88,7 +87,7 @@ export default function PreviousBookingsPage() {
           <thead className="bg-gray-50">
             <tr>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Room & Building
+                Room
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Date & Time
@@ -113,9 +112,6 @@ export default function PreviousBookingsPage() {
                     <div className="text-sm font-medium text-gray-900">
                       {room?.name}
                     </div>
-                    <div className="text-sm text-gray-500">
-                      {room?.building}
-                    </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">{booking.date}</div>
@@ -131,9 +127,6 @@ export default function PreviousBookingsPage() {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="text-sm text-gray-900">
                       {booking.attendees}
-                    </div>
-                    <div className="text-sm text-gray-500">
-                      Capacity: {room?.capacity}
                     </div>
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
